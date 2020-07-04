@@ -1,14 +1,15 @@
-import 'react-native-gesture-handler';
 import React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
-import Hamburger from './src/navigation/Hamburger';
+import Navigation from './src/navigation';
+// @ts-ignore
+import {Provider} from 'react-redux';
+// import {configuredStore} from "store";
 
-const App = () => {
-  return (
-    <NavigationContainer>
-      <Hamburger />
-    </NavigationContainer>
-  );
-};
 
-export default App;
+export default function App() {
+    return (
+        // <Provider store={configuredStore}>
+            <Navigation colorScheme={"light"} />
+        // </Provider>
+    );
+
+}

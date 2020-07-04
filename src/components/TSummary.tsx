@@ -1,6 +1,5 @@
 import * as React from "react";
 import {Text, View, StyleSheet, Image} from "react-native";
-import {LinearGradient} from "react-native-linear-gradient";
 
 const backendData = {
     aggregated_amount: "1202.50",

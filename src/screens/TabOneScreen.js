@@ -6,7 +6,7 @@ import TList from '../components/TList';
 import {connect} from "react-redux";
 
 export default connect(
-    ({backendTransactionData}) => ({backendTransactionData})
+    ({backendTransactionData}) => (backendTransactionData)
 )(TabOneScreen);
 
 const getListData = (backendTransactionData) => Object.keys(backendTransactionData).map((title) => ({
@@ -15,13 +15,14 @@ const getListData = (backendTransactionData) => Object.keys(backendTransactionDa
 }));
 
 function TabOneScreen(props) {
-    return !!Object.keys(props.backendTransactionData).length
-        && (
+    if (props.backendTransactionData && !!Object.keys(props.backendTransactionData).length)
+        return (
             <View style={styles.container}>
                 <TSummary/>
                 <TList listData={getListData(props.backendTransactionData)} navigation={props.navigation}/>
             </View>
         );
+    return null;
 }
 
 const styles = StyleSheet.create({

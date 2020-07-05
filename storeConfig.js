@@ -6,11 +6,12 @@ import {composeWithDevTools} from "redux-devtools-extension";
 
 const persistConfig = {
     key: 'root',
-    storage: AsyncStorage
+    storage: AsyncStorage,
+    blacklist:[]
 };
 
 const persistedReducer = persistReducer(persistConfig, combineReducers({
-    transaction: rootReducer,
+    backendTransactionData: rootReducer,
     isOffline: offlineReducer
 }));
 const configuredStore = createStore(

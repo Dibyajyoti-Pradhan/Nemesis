@@ -29,7 +29,6 @@ import TCard from "./TCard";
               height: 40,
               paddingLeft: 20,
               backgroundColor: "#fafafa",
-
               justifyContent: "center",
             }}
           >

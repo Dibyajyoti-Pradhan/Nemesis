@@ -15,7 +15,6 @@ const getListData = ({backendTransactionData}) => Object.keys(backendTransaction
 }));
 
 function TabOneScreen(props) {
-    console.log(props.backendTransactionData);
     return !!Object.keys(props.backendTransactionData).length
         && (
             <View style={styles.container}>

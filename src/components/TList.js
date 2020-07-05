@@ -16,13 +16,16 @@ import TCard from "./TCard";
       <SectionList
         sections={listData}
         keyExtractor={(item, index) => item + index}
-        renderItem={({ item }) => (
-          <TouchableOpacity
+        renderItem={({ item }) => {
+
+          console.log(item);
+            return(  <TouchableOpacity
           activeOpacity={0.3}
           onPress={() => navigation.navigate('TDetailsScreen', {itemId:item.transactionId})}>
             <TCard item={item} />
           </TouchableOpacity>
-        )}
+        );
+        }                    }
         renderSectionHeader={({ section: { title } }) => (
           <View
             style={{

@@ -3,7 +3,7 @@ import {Text, View, StyleSheet, Clipboard, ToastAndroid, Image} from 'react-nati
 import {connect} from 'react-redux';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 
-export default connect((state) => ({backendTransactionData: state}))(TDetailsScreen);
+export default connect(({backendTransactionData}) => (backendTransactionData))(TDetailsScreen);
 
 const writeToClipboard = async (value) => {
     await Clipboard.setString(value);
@@ -12,7 +12,7 @@ const writeToClipboard = async (value) => {
 
 function TDetailsScreen(props) {
     const itemId = props.route.params.itemId;
-    const item = Object.values(props.backendTransactionData.backendTransactionData)
+    const item = Object.values(props.backendTransactionData)
         .flat(Infinity)
         .find(({transactionId}) => transactionId === itemId);
     return (

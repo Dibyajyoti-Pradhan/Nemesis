@@ -8,7 +8,6 @@ export default function App() {
     useEffect(() => {
         async function getData() {
             const transactionDetails = await axios.get('http://dev-dsk-pariksj-1b-0dd930b7.eu-west-1.amazon.com:3000');
-            console.log(transactionDetails.data);
             persistenceConfiguredStore.configuredStore.dispatch({type: "UPDATE_TRANSACTIONS", data: transactionDetails.data});
         };
         getData();

@@ -2,6 +2,7 @@ import * as React from 'react';
 import {StyleSheet} from 'react-native';
 import {Text, View} from '../components/Themed';
 import TSummary from '../components/TSummary';
+import OfflineDialog from '../components/OfflineDialog';
 import TList from '../components/TList';
 import {connect} from "react-redux";
 
@@ -15,10 +16,13 @@ const getListData = (backendTransactionData) => Object.keys(backendTransactionDa
 }));
 
 function TabOneScreen(props) {
+    // const {ifOffline} = props;
+    const ifOffline = true;
     if (props.backendTransactionData && !!Object.keys(props.backendTransactionData).length)
         return (
             <View style={styles.container}>
-                <TSummary/>
+                {ifOffline && <OfflineDialog/>}
+                <TSummary offline={ifOffline}/>
                 <TList listData={getListData(props.backendTransactionData)} navigation={props.navigation}/>
             </View>
         );

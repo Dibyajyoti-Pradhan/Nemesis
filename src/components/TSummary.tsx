@@ -1,22 +1,23 @@
-import * as React from "react";
-import {Text, View, StyleSheet, Image} from "react-native";
+import React from 'react';
+import {Text, View, StyleSheet} from "react-native";
+import FadeView from "../components/FadeView";
 
 const backendData = {
     aggregated_amount: "1202.50",
     transaction_count: "17",
 };
 
-const TSummary = () => (
-    <View
+const TSummary = ({offline}: any) => (
+    <FadeView
         style={styles.container}
+        offline={offline}
     >
-
         <View style={styles.row}>
             <Text style={[styles.white, styles.medium, styles.normal]}>{"\u20B9"}</Text>
             <Text style={[styles.white, styles.large]}>{backendData.aggregated_amount}</Text>
         </View>
         <Text style={[styles.white, styles.small]}>{backendData.transaction_count} Transactions</Text>
-    </View>
+    </FadeView>
 );
 export default TSummary;
 

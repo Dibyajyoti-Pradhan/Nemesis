@@ -17,7 +17,7 @@ export const backendTransactionData = {
         {
             merchantId: "A2ZC95UVYCGP7H",
             transactionId: "TXNAMZ444456730",
-            amount: "35.20",
+            amount: "232.50",
             transactionStatus: "SUCCESS",
             storeName: "Arun devo",
             payerVPAHandle: "ht******02@apl",
@@ -25,7 +25,7 @@ export const backendTransactionData = {
             cardDisplayDate: "May 19 2020",
             cardDisplayTime: "01:50 PM",
             displayDate: "May 19 2020",
-            displayTime: "01:58:39 PM",
+            displayTime: "01:50:39 PM",
             merchantReferenceId: "014013535454",
         },
     ],

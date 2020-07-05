@@ -8,7 +8,7 @@ export default connect(
 
 function TDetailsScreen(props) {
     const itemId = props.route.params.itemId;
-    const item = Object.values(props.backendData).flat(Infinity).find(({amount}) => amount === itemId);
+    const item = Object.values(props.backendData).flat(Infinity).find(({transactionId}) => transactionId === itemId);
     return (
         <View style={styles.container}>
             <View style={[styles.card, styles.directionRow]}>

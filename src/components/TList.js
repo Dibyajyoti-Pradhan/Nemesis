@@ -16,7 +16,7 @@ import TCard from "./TCard";
         renderItem={({ item }) => (
           <TouchableOpacity
           activeOpacity={0.3}
-          onPress={() => navigation.navigate('TDetailsScreen', {itemId:item.amount})}>
+          onPress={() => navigation.navigate('TDetailsScreen', {itemId:item.transactionId})}>
             <TCard item={item} />
           </TouchableOpacity>
         )}

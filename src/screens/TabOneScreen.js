@@ -53,10 +53,10 @@ function TabOneScreen(props) {
           'http://dev-dsk-pariksj-1b-0dd930b7.eu-west-1.amazon.com:3000',
         );
         props.upsertTransactionDetails(transactionDetails);
-        setRefreshing(false);
       } catch (e) {
         ToastAndroid.show('Network Failure!', ToastAndroid.SHORT);
       }
+      setRefreshing(false);
     }
     refreshing && perfSideEffect();
     wait(5000).then(() => setRefreshing(false));

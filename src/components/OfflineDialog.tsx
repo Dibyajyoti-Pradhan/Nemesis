@@ -20,6 +20,7 @@ const styles = StyleSheet.create({
   },
   leftText: {
     fontSize: 15,
+    fontWeight: 'bold',
     color: 'white',
     textAlign: 'center',
   },

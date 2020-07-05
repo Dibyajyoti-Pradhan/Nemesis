@@ -4,24 +4,25 @@ import {Text, View} from '../components/Themed';
 import TSummary from '../components/TSummary';
 import TList from '../components/TList';
 import {connect} from "react-redux";
-import {backendTransactionData} from "../constants/backenData";
 
 export default connect(
-    state => ({backendData: state})
+    state => ({backendTransactionData: state})
 )(TabOneScreen);
 
-const getListData = (backendData) => Object.keys(backendTransactionData).map((title) => ({
+const getListData = ({backendTransactionData}) => Object.keys(backendTransactionData).map((title) => ({
     title,
-    data: backendData[title],
+    data: backendTransactionData[title],
 }));
 
 function TabOneScreen(props) {
-    return (
-        <View style={styles.container}>
-            <TSummary/>
-            <TList listData={getListData(props.backendData)} navigation={props.navigation}/>
-        </View>
-    );
+    console.log(props.backendTransactionData);
+    return !!Object.keys(props.backendTransactionData).length
+        && (
+            <View style={styles.container}>
+                <TSummary/>
+                <TList listData={getListData(props.backendTransactionData)} navigation={props.navigation}/>
+            </View>
+        );
 }
 
 const styles = StyleSheet.create({

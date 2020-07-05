@@ -9,6 +9,9 @@ import {
 import TCard from "./TCard";
 
   function TList  ({listData,navigation}) {
+      console.log(listData);
+      if(!listData.length)
+          return null;
     return (
       <SectionList
         sections={listData}

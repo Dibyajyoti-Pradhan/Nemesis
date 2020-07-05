@@ -36,7 +36,7 @@ function TDetailsScreen(props) {
       <View style={[styles.card, styles.directionRow]}>
         <Image
           source={require('../assets/green_tick.png')}
-          style={styles.checkmark}
+          style={[styles.checkmark, isOffline? styles.offline: null]}
         />
         <Text style={[styles.money, isOffline? styles.offline: null]}>
           {' '}
@@ -139,8 +139,7 @@ const styles = StyleSheet.create({
   },
   checkmark: {
     height: 20,
-    width: 20,
-    opacity: 0.5
+    width: 20
   },
   leftText: {
     flex: 1,
@@ -171,6 +170,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   offline: {
-      color: "#808080"
+      color: "#808080",
+      opacity: 0.5
   }
 });

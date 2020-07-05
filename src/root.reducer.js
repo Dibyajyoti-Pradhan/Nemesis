@@ -5,6 +5,6 @@ export const rootReducer = (state = {}, {type, data}) => {
 export const offlineReducer = (state= {}, {type, data}) =>
     ({
         ...state,
-            ifOffline: type === 'Offline'
+            isOffline: type === 'Offline'
     });
 

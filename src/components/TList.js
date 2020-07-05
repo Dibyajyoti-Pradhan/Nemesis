@@ -7,8 +7,9 @@ import {
   SectionList,
 } from "react-native";
 import TCard from "./TCard";
+import FadeView from "./FadeView";
 
-  function TList  ({listData,navigation}) {
+  function TList  ({listData,navigation, offline}) {
       console.log(listData);
       if(!listData.length)
           return null;
@@ -22,7 +23,7 @@ import TCard from "./TCard";
             return(  <TouchableOpacity
           activeOpacity={0.3}
           onPress={() => navigation.navigate('TDetailsScreen', {itemId:item.transactionId})}>
-            <TCard item={item} />
+            <TCard item={item} offline={offline} />
           </TouchableOpacity>
         );
         }                    }

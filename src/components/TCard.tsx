@@ -1,8 +1,9 @@
 import * as React from "react";
 import { Text, View, StyleSheet, Image } from "react-native";
+import FadeView from "../components/FadeView";
 
-const TCard = ({ item }: any) => (
-  <View style={styles.row}>
+const TCard = ({ item, offline }: any) => (
+  <FadeView style={styles.row} offline={offline}>
     <View style={styles.left}>
       <Text style={styles.leftText}>
         {"\u20B9"} {item.amount}
@@ -15,7 +16,7 @@ const TCard = ({ item }: any) => (
       <Text style={styles.rightText}>{item.transactionId}</Text>
       <Text style={styles.rightText}>{item.cardDisplayTime}</Text>
     </View>
-  </View>
+  </FadeView>
 );
 export default TCard;
 

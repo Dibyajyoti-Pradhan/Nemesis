@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Text, View, StyleSheet, Clipboard} from 'react-native';
+import {Text, View, StyleSheet, Clipboard, ToastAndroid, Image} from 'react-native';
 import {connect} from 'react-redux';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 
@@ -7,7 +7,7 @@ export default connect((state) => ({backendTransactionData: state}))(TDetailsScr
 
 const writeToClipboard = async (value) => {
     await Clipboard.setString(value);
-    alert('Copied to Clipboard!');
+    ToastAndroid.show('Copied to Clipboard!', ToastAndroid.SHORT);
 };
 
 function TDetailsScreen(props) {
@@ -18,7 +18,7 @@ function TDetailsScreen(props) {
     return (
         <View style={styles.container}>
             <View style={[styles.card, styles.directionRow]}>
-                <Text style={[styles.money, styles.checkmark]}>{'\u2713'}</Text>
+            <Image source={require('../assets/green_tick.png')} style={styles.checkmark}/>
                 <Text style={styles.money}>
                     {' '}
                     {'\u20B9'} {item.amount}
@@ -116,13 +116,8 @@ const styles = StyleSheet.create({
     },
     checkmark: {
         height: 20,
-        width: 20,
-        fontSize: 15,
-        fontWeight: 'bold',
-        color: '#ffffff',
-        backgroundColor: '#3c9d17',
-        borderRadius: 10,
-        textAlign: 'center',
+        width: 20
+
     },
     leftText: {
         flex: 1,
@@ -144,10 +139,13 @@ const styles = StyleSheet.create({
         borderBottomWidth: 0,
     },
     blueBorder: {
+        width: 39,
         borderWidth: 1,
-        borderColor: '#00345d',
+        borderColor: '#0066c0',
+        borderRadius: 3,
         paddingHorizontal: 2,
         fontSize: 13,
+        textAlign: 'center'
 
     },
 });

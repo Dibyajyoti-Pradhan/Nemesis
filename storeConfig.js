@@ -1,14 +1,18 @@
 import {AsyncStorage} from "react-native";
 import {persistReducer, persistStore} from "redux-persist";
-import {rootReducer} from "./src/root.reducer";
-import {createStore} from "redux";
+import {offlineReducer, rootReducer} from "./src/root.reducer";
+import {createStore, combineReducers} from "redux";
 import {composeWithDevTools} from "redux-devtools-extension";
+
 const persistConfig = {
-    key:'root',
+    key: 'root',
     storage: AsyncStorage
 };
 
-const persistedReducer = persistReducer(persistConfig, rootReducer);
+const persistedReducer = persistReducer(persistConfig, combineReducers({
+    transaction: rootReducer,
+    isOffline: offlineReducer
+}));
 const configuredStore = createStore(
     persistedReducer,
     {},

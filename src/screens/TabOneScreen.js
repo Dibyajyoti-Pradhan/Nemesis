@@ -6,10 +6,10 @@ import TList from '../components/TList';
 import {connect} from "react-redux";
 
 export default connect(
-    state => ({backendTransactionData: state})
+    ({backendTransactionData}) => ({backendTransactionData})
 )(TabOneScreen);
 
-const getListData = ({backendTransactionData}) => Object.keys(backendTransactionData).map((title) => ({
+const getListData = (backendTransactionData) => Object.keys(backendTransactionData).map((title) => ({
     title,
     data: backendTransactionData[title],
 }));

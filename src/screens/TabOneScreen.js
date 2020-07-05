@@ -17,7 +17,7 @@ const getListData = (backendTransactionData) => Object.keys(backendTransactionDa
 
 function TabOneScreen(props) {
     // const {ifOffline} = props;
-    const ifOffline = true;
+    const ifOffline = false;
     if (props.backendTransactionData && !!Object.keys(props.backendTransactionData).length)
         return (
             <View style={styles.container}>

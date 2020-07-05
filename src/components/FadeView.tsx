@@ -13,7 +13,7 @@ const FadeView = (props: any) => {
               useNativeDriver: true
             }
           ).start();
-        }, [])
+        }, [props.offline])
       
         return (
           <Animated.View                 // Special animatable View

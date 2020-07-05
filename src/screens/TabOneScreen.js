@@ -23,6 +23,7 @@ const getListData = (backendTransactionData) => Object.keys(backendTransactionDa
 
 
 function TabOneScreen(props) {
+    const ifOffline = true;
     const [refreshing, setRefreshing] = useState(false);
     useEffect(() => {
         async function perfSideEffect() {
@@ -40,9 +41,9 @@ function TabOneScreen(props) {
                     <RefreshControl refreshing={refreshing} onRefresh={() => setRefreshing(true)}/>
                 }
             >
-                <>{props.ifOffline && <OfflineDialog/>}</>
+                {ifOffline && <OfflineDialog/>}
                 <View style={styles.container}>
-                    <TSummary/>
+                    <TSummary offline={ifOffline}/>
                     <TList listData={getListData(props.backendTransactionData)} navigation={props.navigation}/>
                 </View>
             </ScrollView>

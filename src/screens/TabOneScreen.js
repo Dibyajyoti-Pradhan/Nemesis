@@ -55,7 +55,7 @@ function TabOneScreen(props) {
     }
     refreshing && perfSideEffect();
     wait(5000).then(() => setRefreshing(false));
-  },[isOffline]);
+  });
 
   if (
     props.backendTransactionData &&

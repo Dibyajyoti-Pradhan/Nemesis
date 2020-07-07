@@ -39,16 +39,13 @@ function wait(timeout) {
 }
 
 function TabOneScreen(props) {
- // REPLACE HERE FOR ACTUAL NETWORK
-    // console.log(props.isOffline);
-    // const {isOffline} = props;
-    const isOffline = false;
+    const {isOffline} = props;
   const [refreshing, setRefreshing] = useState(false);
   useEffect(() => {
     async function perfSideEffect() {
       try {
         const transactionDetails = await axios.get(
-          'http://dev-dsk-pariksj-1b-0dd930b7.eu-west-1.amazon.com:3000',
+          'http://192.168.0.104:3000',
         );
         props.upsertTransactionDetails(transactionDetails);
       } catch (e) {

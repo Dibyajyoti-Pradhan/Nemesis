@@ -12,22 +12,15 @@ export default function App() {
     console.log('Is connected?', state.isInternetReachable);
   });
   const netInfo = useNetInfo();
-
-  // First believing the app is offline.
-  if (!netInfo.isInternetReachable) {
-    persistenceConfiguredStore.configuredStore.dispatch({
-      type: 'Offline',
+  
+    // Network Action dispatcher.
+    NetInfo.fetch().then((state) => {
+      if (!state.isInternetReachable) {
+        persistenceConfiguredStore.configuredStore.dispatch({
+          type: 'Offline',
+        });
+      }
     });
-  }
-  //   // Network Action dispatcher.
-  //   NetInfo.fetch().then((state) => {
-  //     if (!state.isConnected) {
-  //     } else {
-  //       persistenceConfiguredStore.configuredStore.dispatch({
-  //         type: 'Online',
-  //       });
-  //     }
-  //   });
 
   useEffect(() => {
     console.log('Connection status?', netInfo.isConnected);

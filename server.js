@@ -2,22 +2,6 @@ const express = require('express');
 const app = express();
 
 const backendTransactionData = {
-    "TODAY": [
-        {
-            merchantId: "A2ZC95UVYCGP7H",
-            transactionId: "TXNAMZ333356789",
-            amount: "100.00",
-            transactionStatus: "SUCCESS",
-            storeName: "Arun devo",
-            payerVPAHandle: "di******06@apl",
-            timestamp: 1589876919000,
-            cardDisplayDate: "Jul 8 2020",
-            cardDisplayTime: "11:58 PM",
-            displayDate: "Jul 8 2020",
-            displayTime: "11:58:39 PM",
-            merchantReferenceId: "014013535414",
-        },
-    ],
     "MAY 19 2020": [
         {
             merchantId: "A2ZC95UVYCGP7H",
@@ -51,7 +35,7 @@ const backendTransactionData = {
     "MAY 18 2020": [
         {
             merchantId: "A2ZC95UVYCGP7H",
-            transactionId: "TXNAMZ123456300",
+            transactionId: "TXNAMZ103456300",
             amount: "18.10",
             transactionStatus: "SUCCESS",
             storeName: "Arun devo",
@@ -125,7 +109,7 @@ const backendTransactionData = {
     "MAY 15 2020": [
         {
             merchantId: "A2ZC95UVYCGP7H",
-            transactionId: "TXNAMZ123456300",
+            transactionId: "TXNAMZ123456350",
             amount: "55.00",
             transactionStatus: "SUCCESS",
             storeName: "Arun devo",
@@ -139,7 +123,7 @@ const backendTransactionData = {
         },
         {
             merchantId: "A2ZC95UVYCGP7H",
-            transactionId: "TXNAMZ123456300",
+            transactionId: "TXNAMZ129454300",
             amount: "95.00",
             transactionStatus: "SUCCESS",
             storeName: "Arun devo",
@@ -155,7 +139,7 @@ const backendTransactionData = {
     "MAY 12 2020": [
         {
             merchantId: "A2ZC95UVYCGP7H",
-            transactionId: "TXNAMZ123456300",
+            transactionId: "TXNAMZ123451300",
             amount: "117.00",
             transactionStatus: "SUCCESS",
             storeName: "Arun devo",

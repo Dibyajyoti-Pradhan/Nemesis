@@ -7,8 +7,8 @@ const backendData = {
   transaction_count: '17',
 };
 
-const TSummary = ({offline}: any) => (
-    <FadeView style={styles.container} offline={offline}>
+const TSummary = ({offline, refreshing}: any) => (
+    <FadeView style={styles.container} offline={offline} refreshing={refreshing}>
       <View style={styles.row}>
         <Text style={[styles.white, styles.medium, styles.normal]}>
           {'\u20B9'}
@@ -28,8 +28,9 @@ const styles = StyleSheet.create({
   container: {
     paddingLeft: 20,
     height: 132,
+    width: '100%',
     justifyContent: 'center',
-    backgroundColor: '#00345d',
+    backgroundColor: '#00345d'
   },
   row: {
     flexDirection: 'row',

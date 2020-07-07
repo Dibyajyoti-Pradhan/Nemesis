@@ -21,10 +21,7 @@ const writeToClipboard = async (value) => {
 };
 
 function TDetailsScreen(props) {
-    // REPLACE HERE FOR ACTUAL NETWORK
-    // console.log(props.isOffline);
-    // const {isOffline} = props;
-    const isOffline = true;
+    const {isOffline} = props;
   const itemId = props.route.params.itemId;
   const item = Object.values(props.backendTransactionData)
     .flat(Infinity)

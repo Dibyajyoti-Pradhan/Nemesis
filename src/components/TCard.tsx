@@ -1,9 +1,9 @@
 import * as React from "react";
-import { Text, View, StyleSheet, Image } from "react-native";
+import { Text, View, StyleSheet } from "react-native";
 import FadeView from "../components/FadeView";
 
-const TCard = ({ item, offline }: any) => (
-  <FadeView style={styles.row} offline={offline}>
+const TCard = ({ item, offline, refreshing }: any) => (
+  <FadeView style={styles.row} offline={offline} refreshing={refreshing}>
     <View style={styles.left}>
       <Text style={styles.leftText}>
         {"\u20B9"} {item.amount}

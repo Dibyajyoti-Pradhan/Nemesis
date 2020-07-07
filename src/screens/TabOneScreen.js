@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {
   RefreshControl,
-  SafeAreaView,
   ScrollView,
   StyleSheet,
   ToastAndroid,
@@ -12,7 +11,6 @@ import OfflineDialog from '../components/OfflineDialog';
 import TList from '../components/TList';
 import {connect} from 'react-redux';
 import axios from 'axios';
-import {persistenceConfiguredStore} from '../../storeConfig';
 
 export default connect(
   ({backendTransactionData, isOffline}) => ({
@@ -44,7 +42,7 @@ function TabOneScreen(props) {
  // REPLACE HERE FOR ACTUAL NETWORK
     // console.log(props.isOffline);
     // const {isOffline} = props;
-    const isOffline = true;
+    const isOffline = false;
   const [refreshing, setRefreshing] = useState(false);
   useEffect(() => {
     async function perfSideEffect() {
@@ -77,11 +75,12 @@ function TabOneScreen(props) {
         }>
         {isOffline && <OfflineDialog/>}
         <View style={styles.container}>
-          <TSummary offline={isOffline} />
+          <TSummary offline={isOffline} refreshing={refreshing}/>
           <TList
             listData={getListData(props.backendTransactionData)}
             navigation={props.navigation}
             offline={isOffline}
+            refreshing={refreshing}
           />
         </View>
       </ScrollView>

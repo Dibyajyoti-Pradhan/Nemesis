@@ -9,19 +9,25 @@ export default function App() {
   // Subscribe
   NetInfo.addEventListener((state) => {
     console.log('Connection type', state.type);
-    console.log('Is connected?', state.isConnected);
+    console.log('Is connected?', state.isInternetReachable);
   });
   const netInfo = useNetInfo();
 
-//   // Network Action dispatcher.
-//   NetInfo.fetch().then((state) => {
-//     if (!state.isConnected) {
-//     } else {
-//       persistenceConfiguredStore.configuredStore.dispatch({
-//         type: 'Online',
-//       });
-//     }
-//   });
+  // First believing the app is offline.
+  if (!netInfo.isInternetReachable) {
+    persistenceConfiguredStore.configuredStore.dispatch({
+      type: 'Offline',
+    });
+  }
+  //   // Network Action dispatcher.
+  //   NetInfo.fetch().then((state) => {
+  //     if (!state.isConnected) {
+  //     } else {
+  //       persistenceConfiguredStore.configuredStore.dispatch({
+  //         type: 'Online',
+  //       });
+  //     }
+  //   });
 
   useEffect(() => {
     console.log('Connection status?', netInfo.isConnected);
@@ -32,14 +38,14 @@ export default function App() {
         data: transactionDetails.data,
       });
     }
-    if (netInfo.isConnected) {
+    if (netInfo.isInternetReachable) {
       getData();
     } else {
       persistenceConfiguredStore.configuredStore.dispatch({
         type: 'Offline',
       });
     }
-  }, [netInfo.isConnected]);
+  }, [netInfo.isInternetReachable]);
   return (
     <Provider store={persistenceConfiguredStore.configuredStore}>
       {/*<PersistGate loading={null} persistor={persistenceConfiguredStore.persistence}/>*/}

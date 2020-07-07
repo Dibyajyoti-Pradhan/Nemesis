@@ -21,7 +21,7 @@ const writeToClipboard = async (value) => {
 };
 
 function TDetailsScreen(props) {
-    const {isOffline} = props;
+    const {isOffline = true} = props;
   const itemId = props.route.params.itemId;
   const item = Object.values(props.backendTransactionData)
     .flat(Infinity)

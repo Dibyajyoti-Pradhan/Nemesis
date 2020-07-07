@@ -39,7 +39,7 @@ function wait(timeout) {
 }
 
 function TabOneScreen(props) {
-    const {isOffline} = props;
+    const {isOffline = true} = props;
   const [refreshing, setRefreshing] = useState(false);
   useEffect(() => {
     async function perfSideEffect() {
@@ -55,7 +55,7 @@ function TabOneScreen(props) {
     }
     refreshing && perfSideEffect();
     wait(5000).then(() => setRefreshing(false));
-  });
+  },[isOffline]);
 
   if (
     props.backendTransactionData &&

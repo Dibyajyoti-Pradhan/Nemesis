@@ -2,6 +2,22 @@ const express = require('express');
 const app = express();
 
 const backendTransactionData = {
+    "TODAY": [
+        {
+            merchantId: "A2ZC95UVYCGP7H",
+            transactionId: "TXNAMZ333356789",
+            amount: "100.00",
+            transactionStatus: "SUCCESS",
+            storeName: "Arun devo",
+            payerVPAHandle: "di******06@apl",
+            timestamp: 1589876919000,
+            cardDisplayDate: "Jul 8 2020",
+            cardDisplayTime: "11:58 PM",
+            displayDate: "Jul 8 2020",
+            displayTime: "11:58:39 PM",
+            merchantReferenceId: "014013535414",
+        },
+    ],
     "MAY 19 2020": [
         {
             merchantId: "A2ZC95UVYCGP7H",

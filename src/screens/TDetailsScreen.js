@@ -3,10 +3,10 @@ import {
   Text,
   View,
   StyleSheet,
-  Clipboard,
   ToastAndroid,
   Image,
 } from 'react-native';
+import Clipboard from "@react-native-community/clipboard";
 import {connect} from 'react-redux';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import OfflineDailog from '../components/OfflineDialog';

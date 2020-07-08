@@ -12,6 +12,7 @@
   "dependencies": {
     "@anarock/pebble": "^0.46.1",
     "@expo/vector-icons": "expo/vector-icons",
+    "@react-native-community/clipboard": "^1.2.3",
     "@react-native-community/masked-view": "^0.1.10",
     "@react-native-community/netinfo": "^5.9.4",
     "@react-navigation/bottom-tabs": "latest",

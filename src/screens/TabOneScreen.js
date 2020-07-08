@@ -4,6 +4,7 @@ import {
   ScrollView,
   StyleSheet,
   ToastAndroid,
+  Alert,
 } from 'react-native';
 import {Text, View} from '../components/Themed';
 import TSummary from '../components/TSummary';
@@ -57,6 +58,12 @@ function TabOneScreen(props) {
     wait(5000).then(() => setRefreshing(false));
   });
 
+  useEffect(() => {
+    if(!isOffline) {
+      setRefreshing(true);
+    }
+  },[isOffline]);
+
   if (
     props.backendTransactionData &&
     !!Object.keys(props.backendTransactionData).length
@@ -72,7 +79,7 @@ function TabOneScreen(props) {
         }>
         {isOffline && <OfflineDialog/>}
         <View style={styles.container}>
-          <TSummary offline={isOffline} refreshing={refreshing}/>
+          <TSummary offline={isOffline} refreshing={refreshing} />
           <TList
             listData={getListData(props.backendTransactionData)}
             navigation={props.navigation}

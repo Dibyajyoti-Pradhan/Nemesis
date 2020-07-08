@@ -1,4 +1,5 @@
 import React, {useEffect} from 'react';
+import {ToastAndroid} from 'react-native';
 import Navigation from './src/navigation';
 import {Provider} from 'react-redux';
 import axios from 'axios';
@@ -12,27 +13,34 @@ export default function App() {
     console.log('Is connected?', state.isInternetReachable);
   });
   const netInfo = useNetInfo();
-  
-    // Network Action dispatcher.
-    NetInfo.fetch().then((state) => {
-      if (!state.isInternetReachable) {
-        persistenceConfiguredStore.configuredStore.dispatch({
-          type: 'Offline',
-        });
-      }
-    });
+
+  // Network Action dispatcher.
+  NetInfo.fetch().then((state) => {
+    if (!state.isInternetReachable) {
+      persistenceConfiguredStore.configuredStore.dispatch({
+        type: 'Offline',
+      });
+    }
+  });
 
   useEffect(() => {
     console.log('Connection status?', netInfo.isConnected);
     async function getData() {
-      const transactionDetails = await axios.get('http://192.168.0.104:3000');
-      persistenceConfiguredStore.configuredStore.dispatch({
-        type: 'UPDATE_TRANSACTIONS',
-        data: transactionDetails.data,
-      });
+      try {
+        const transactionDetails = await axios.get('http://192.168.0.104:3000');
+        persistenceConfiguredStore.configuredStore.dispatch({
+          type: 'UPDATE_TRANSACTIONS',
+          data: transactionDetails.data,
+        });
+      } catch (e) {
+        console.log("Network call in App.js failed");
+      }
     }
     if (netInfo.isInternetReachable) {
       getData();
+      persistenceConfiguredStore.configuredStore.dispatch({
+        type: 'Online'
+      });
     } else {
       persistenceConfiguredStore.configuredStore.dispatch({
         type: 'Offline',

@@ -1,34 +1,25 @@
-import { Ionicons } from '@expo/vector-icons';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createStackNavigator } from '@react-navigation/stack';
+import {Ionicons} from '@expo/vector-icons';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {createStackNavigator} from '@react-navigation/stack';
 import * as React from 'react';
 
 import Colors from '../constants/Colors';
 import TabOneScreen from '../screens/TabOneScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
-import { BottomTabParamList, TabOneParamList, TabTwoParamList } from '../types';
+import {BottomTabParamList, TabOneParamList, TabTwoParamList} from '../types';
 import TDetailsScreen from '../screens/TDetailsScreen';
-import { Text } from "pebble-native";
+import {Text} from 'pebble-native';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
 export default function BottomTabNavigator() {
   return (
-    <BottomTab.Navigator
-      initialRouteName="TabOne"
-      >
+    <BottomTab.Navigator initialRouteName="Transaction History">
       <BottomTab.Screen
-        name="TabOne"
+        name="Transaction History"
         component={TabOneNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
-        }}
-      />
-      <BottomTab.Screen
-        name="TabTwo"
-        component={TabTwoNavigator}
-        options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+          tabBarIcon: ({color}) => <TabBarIcon name="ios-code" color={color} />,
         }}
       />
     </BottomTab.Navigator>
@@ -37,8 +28,12 @@ export default function BottomTabNavigator() {
 
 // You can explore the built-in icon families and icons on the web at:
 // https://icons.expo.fyi/
-function TabBarIcon(props: { name: string; color: string }) {
-  return <Text size={30} style={{ marginBottom: -3 }} {...props} >O</Text>;
+function TabBarIcon(props: {name: string; color: string}) {
+  return (
+    <Text size={30} style={{marginBottom: -3}} {...props}>
+      O
+    </Text>
+  );
 }
 
 // Each tab has its own navigation stack, you can read more about this pattern here:
@@ -48,16 +43,16 @@ const TabOneStack = createStackNavigator<any>();
 function TabOneNavigator() {
   return (
     <TabOneStack.Navigator>
-    <TabOneStack.Screen
-      name="TabOneScreen"
-      component={TabOneScreen}
-      options={{ headerTitle: 'Transaction History' }}
-    />
-    <TabOneStack.Screen
-      name="TDetailsScreen"
-      component={TDetailsScreen}
-      options={{ headerTitle: 'Transaction Details' }}
-    />
+      <TabOneStack.Screen
+        name="TabOneScreen"
+        component={TabOneScreen}
+        options={{headerTitle: 'Transaction History'}}
+      />
+      <TabOneStack.Screen
+        name="TDetailsScreen"
+        component={TDetailsScreen}
+        options={{headerTitle: 'Transaction Details'}}
+      />
     </TabOneStack.Navigator>
   );
 }
@@ -70,7 +65,7 @@ function TabTwoNavigator() {
       <TabTwoStack.Screen
         name="TabTwoScreen"
         component={TabTwoScreen}
-        options={{ headerTitle: 'Tab Two Title' }}
+        options={{headerTitle: 'Tab Two Title'}}
       />
     </TabTwoStack.Navigator>
   );

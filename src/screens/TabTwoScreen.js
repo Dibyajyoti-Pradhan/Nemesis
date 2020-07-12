@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { StyleSheet } from 'react-native';
+import {StyleSheet} from 'react-native';
 
-import { Text, View } from '../components/Themed';
+import {Text, View} from '../components/Themed';
 
 export default function TabTwoScreen() {
   return (
@@ -20,5 +20,5 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     fontWeight: 'bold',
-  }
+  },
 });

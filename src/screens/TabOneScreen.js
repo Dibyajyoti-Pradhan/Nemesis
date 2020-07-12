@@ -11,6 +11,8 @@ import OfflineDialog from '../components/OfflineDialog';
 import TList from '../components/TList';
 import {connect} from 'react-redux';
 import axios from 'axios';
+import {Button} from 'pebble-native';
+import {randomDate} from '../utils';
 
 export default connect(
   ({backendTransactionData, isOffline}) => ({
@@ -20,7 +22,7 @@ export default connect(
   (dispatch) => ({
     upsertTransactionDetails: ({data}) =>
       dispatch({
-        type: 'UPDATE_TRANSACTIONS',
+        type: 'UPSERT_TRANSACTION',
         data,
       }),
   }),
@@ -39,24 +41,29 @@ function wait(timeout) {
 }
 
 function TabOneScreen(props) {
-    const {isOffline = true} = props;
+  ws.on('addTransaction', (msg) => {
+    console.log('Adding to store', msg);
+    props.upsertTransactionDetails({data: msg});
+  });
+  const {isOffline = true} = props;
   const [refreshing, setRefreshing] = useState(false);
   useEffect(() => {
     async function perfSideEffect() {
       try {
         const transactionDetails = await axios.get(
-          'http://192.168.0.104:3000',
+          'http://dev-dsk-pariksj-1b-0dd930b7.eu-west-1.amazon.com:3000/',
         );
+        console.log('upsert', transactionDetails);
         props.upsertTransactionDetails(transactionDetails);
       } catch (e) {
         ToastAndroid.show('Network Failure!', ToastAndroid.SHORT);
       }
       setRefreshing(false);
     }
+
     refreshing && perfSideEffect();
     wait(5000).then(() => setRefreshing(false));
   });
-
   if (
     props.backendTransactionData &&
     !!Object.keys(props.backendTransactionData).length
@@ -70,9 +77,13 @@ function TabOneScreen(props) {
             onRefresh={() => setRefreshing(true)}
           />
         }>
-        {isOffline && <OfflineDialog/>}
+        {isOffline && <OfflineDialog />}
         <View style={styles.container}>
-          <TSummary offline={isOffline} refreshing={refreshing}/>
+          <TSummary
+            offline={isOffline}
+            refreshing={refreshing}
+            transactionList={getListData(props.backendTransactionData)}
+          />
           <TList
             listData={getListData(props.backendTransactionData)}
             navigation={props.navigation}

@@ -2,26 +2,36 @@ import React, {useEffect} from 'react';
 import {Text, View, StyleSheet} from 'react-native';
 import FadeView from '../components/FadeView';
 
-const backendData = {
-  aggregated_amount: '1202.50',
-  transaction_count: '17',
-};
-
-const TSummary = ({offline, refreshing}: any) => (
-    <FadeView style={styles.container} offline={offline} refreshing={refreshing}>
+const getTotalAmount = (transactionList) =>
+  transactionList
+    .reduce((acc, i) => [...acc, i.data], [])
+    .flat(Infinity)
+    .reduce((acc, el) => (acc += Number(el.amount)), 0)
+    .toFixed(0);
+const getTotalTransactions = (transactionList) =>
+  transactionList.reduce((acc, i) => [...acc, i.data], []).flat(Infinity)
+    .length;
+const TSummary = ({offline, refreshing, transactionList}) => {
+  return (
+    <FadeView
+      style={styles.container}
+      offline={offline}
+      refreshing={refreshing}>
       <View style={styles.row}>
         <Text style={[styles.white, styles.medium, styles.normal]}>
           {'\u20B9'}
         </Text>
         <Text style={[styles.white, styles.large]}>
-          {backendData.aggregated_amount}
+          {getTotalAmount(transactionList)}
         </Text>
       </View>
       <Text style={[styles.white, styles.small]}>
-        {backendData.transaction_count} Transactions
+        {getTotalTransactions(transactionList)} Transactions
       </Text>
     </FadeView>
   );
+};
+
 export default TSummary;
 
 const styles = StyleSheet.create({
@@ -30,7 +40,7 @@ const styles = StyleSheet.create({
     height: 132,
     width: '100%',
     justifyContent: 'center',
-    backgroundColor: '#00345d'
+    backgroundColor: '#00345d',
   },
   row: {
     flexDirection: 'row',

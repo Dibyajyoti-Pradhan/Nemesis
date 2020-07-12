@@ -3,10 +3,10 @@ import {Text, View, StyleSheet, Image} from 'react-native';
 import FadeView from './FadeView';
 
 const OfflineDailog = () => (
-      <View style={styles.row}>
-        <Text style={styles.leftText}>You appear to be offline!</Text>
-      </View>
-    );
+  <View style={styles.row}>
+    <Text style={styles.leftText}>You appear to be offline!</Text>
+  </View>
+);
 
 export default OfflineDailog;
 
@@ -17,6 +17,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#808080',
     height: 25,
     justifyContent: 'center',
+    paddingVertical: 15,
   },
   leftText: {
     fontSize: 15,

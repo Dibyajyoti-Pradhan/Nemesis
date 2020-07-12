@@ -21,83 +21,83 @@ const writeToClipboard = async (value) => {
 };
 
 function TDetailsScreen(props) {
-    const {isOffline = true} = props;
+  const {isOffline = true} = props;
   const itemId = props.route.params.itemId;
   const item = Object.values(props.backendTransactionData)
     .flat(Infinity)
     .find(({transactionId}) => transactionId === itemId);
   return (
-      <View style={styles.container}>
-      {isOffline && <OfflineDailog/>}
-    <View style={styles.innerContainer}>
-      <View style={[styles.card, styles.directionRow]}>
-        <Image
-          source={require('../assets/green_tick.png')}
-          style={[styles.checkmark, isOffline? {opacity: 0.5}: null]}
-        />
-        <Text style={[styles.money, isOffline? styles.offline: null]}>
-          {' '}
-          {'\u20B9'} {item.amount}
-        </Text>
-      </View>
-      <View style={styles.card}>
-        <Text style={styles.title}>PAYMENT DETAILS</Text>
-
-        <View style={styles.row}>
-          <Text style={styles.leftText}>Transaction Amount</Text>
-          <Text style={styles.rightText}>
+    <View style={styles.container}>
+      {isOffline && <OfflineDailog />}
+      <View style={styles.innerContainer}>
+        <View style={[styles.card, styles.directionRow]}>
+          <Image
+            source={require('../assets/green_tick.png')}
+            style={[styles.checkmark, isOffline ? {opacity: 0.5} : null]}
+          />
+          <Text style={[styles.money, isOffline ? styles.offline : null]}>
+            {' '}
             {'\u20B9'} {item.amount}
           </Text>
         </View>
+        <View style={styles.card}>
+          <Text style={styles.title}>PAYMENT DETAILS</Text>
 
-        <View style={styles.row}>
-          <Text style={styles.leftText}>Transaction ID</Text>
-          <Text style={styles.rightText}>{item.transactionId} </Text>
-          <TouchableOpacity
-            onPress={() => writeToClipboard(item.transactionId)}>
-            <Text style={styles.blueBorder}>Copy</Text>
-          </TouchableOpacity>
+          <View style={styles.row}>
+            <Text style={styles.leftText}>Transaction Amount</Text>
+            <Text style={styles.rightText}>
+              {'\u20B9'} {item.amount}
+            </Text>
+          </View>
+
+          <View style={styles.row}>
+            <Text style={styles.leftText}>Transaction ID</Text>
+            <Text style={styles.rightText}>{item.transactionId} </Text>
+            <TouchableOpacity
+              onPress={() => writeToClipboard(item.transactionId)}>
+              <Text style={styles.blueBorder}>Copy</Text>
+            </TouchableOpacity>
+          </View>
+
+          <View style={styles.row}>
+            <Text style={styles.leftText}>Date & Time</Text>
+            <Text style={styles.rightText}>
+              {item.displayDate} {item.displayTime}
+            </Text>
+          </View>
+
+          <View style={styles.row}>
+            <Text style={styles.leftText}>Transaction Status</Text>
+            <Text style={[styles.rightText, styles.lightGreen]}>
+              {item.transactionStatus}
+            </Text>
+          </View>
+
+          <View style={styles.row}>
+            <Text style={styles.leftText}>Store Name</Text>
+            <Text style={styles.rightText}>{item.storeName}</Text>
+          </View>
         </View>
 
-        <View style={styles.row}>
-          <Text style={styles.leftText}>Date & Time</Text>
-          <Text style={styles.rightText}>
-            {item.displayDate} {item.displayTime}
-          </Text>
+        <View style={styles.card}>
+          <Text style={styles.title}>CUSTOMER DETAILS</Text>
+          <View style={styles.row}>
+            <Text style={styles.leftText}>VPA</Text>
+            <Text style={styles.rightText}>{item.payerVPAHandle}</Text>
+          </View>
         </View>
-
-        <View style={styles.row}>
-          <Text style={styles.leftText}>Transaction Status</Text>
-          <Text style={[styles.rightText, styles.lightGreen]}>
-            {item.transactionStatus}
-          </Text>
-        </View>
-
-        <View style={styles.row}>
-          <Text style={styles.leftText}>Store Name</Text>
-          <Text style={styles.rightText}>{item.storeName}</Text>
+        <View style={[styles.card, styles.removeBorder]}>
+          <Text style={styles.title}>SETTLEMENT DETAILS</Text>
+          <View style={styles.row}>
+            <Text style={styles.leftText}>Bank Reference No.</Text>
+            <Text style={styles.rightText}>{item.merchantReferenceId}</Text>
+          </View>
+          <View style={styles.row}>
+            <Text style={styles.leftText}>Settlement Status</Text>
+            <Text style={styles.rightText}>Settled to bank</Text>
+          </View>
         </View>
       </View>
-
-      <View style={styles.card}>
-        <Text style={styles.title}>CUSTOMER DETAILS</Text>
-        <View style={styles.row}>
-          <Text style={styles.leftText}>VPA</Text>
-          <Text style={styles.rightText}>{item.payerVPAHandle}</Text>
-        </View>
-      </View>
-      <View style={[styles.card, styles.removeBorder]}>
-        <Text style={styles.title}>SETTLEMENT DETAILS</Text>
-        <View style={styles.row}>
-          <Text style={styles.leftText}>Bank Reference No.</Text>
-          <Text style={styles.rightText}>{item.merchantReferenceId}</Text>
-        </View>
-        <View style={styles.row}>
-          <Text style={styles.leftText}>Settlement Status</Text>
-          <Text style={styles.rightText}>Settled to bank</Text>
-        </View>
-      </View>
-    </View>
     </View>
   );
 }
@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   innerContainer: {
-      paddingHorizontal: 20
+    paddingHorizontal: 20,
   },
   row: {
     paddingVertical: 5,
@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
   },
   checkmark: {
     height: 20,
-    width: 20
+    width: 20,
   },
   leftText: {
     flex: 1,
@@ -167,6 +167,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   offline: {
-      color: "#808080"
-  }
+    color: '#808080',
+  },
 });

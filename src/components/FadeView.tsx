@@ -14,7 +14,7 @@ const RippleFadedView = (props: any) => {
     }).start();
   }, [props.offline]);
 
-  const finalValueScale = (props.refreshing && !props.offline) ? 1.05 : 1;
+  const finalValueScale = props.refreshing && !props.offline ? 1.05 : 1;
   useEffect(() => {
     Animated.timing(scaleValue, {
       toValue: finalValueScale,
@@ -30,9 +30,8 @@ const RippleFadedView = (props: any) => {
           transform: [{scale: scaleValue}],
           opacity: fadeAnim, // Bind opacity to animated value
         }}>
-      {props.children}
+        {props.children}
       </Animated.View>
-
     </>
   );
 };

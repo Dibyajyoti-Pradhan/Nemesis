@@ -4,45 +4,43 @@ import {Provider} from 'react-redux';
 import axios from 'axios';
 import {persistenceConfiguredStore} from './storeConfig';
 import NetInfo, {useNetInfo} from '@react-native-community/netinfo';
+import io from 'socket.io-client';
 
-export default function App() {
-  // Subscribe
-  NetInfo.addEventListener((state) => {
-    console.log('Connection type', state.type);
-    console.log('Is connected?', state.isInternetReachable);
-  });
+global.ws = io('http://dev-dsk-pariksj-1b-0dd930b7.eu-west-1.amazon.com:3000');
+export default () => {
   const netInfo = useNetInfo();
-  
-    // Network Action dispatcher.
-    NetInfo.fetch().then((state) => {
-      if (!state.isInternetReachable) {
-        persistenceConfiguredStore.configuredStore.dispatch({
-          type: 'Offline',
-        });
-      }
-    });
-
-  useEffect(() => {
-    console.log('Connection status?', netInfo.isConnected);
-    async function getData() {
-      const transactionDetails = await axios.get('http://192.168.0.104:3000');
+  // Network Action dispatcher.
+  NetInfo.fetch().then((state) => {
+    if (!state.isInternetReachable) {
       persistenceConfiguredStore.configuredStore.dispatch({
-        type: 'UPDATE_TRANSACTIONS',
-        data: transactionDetails.data,
+        type: 'Offline',
       });
     }
+  });
+
+  useEffect(() => {
+    function getData() {
+      ws.on('receiveAllTransactions', (allTransactions) => {
+        persistenceConfiguredStore.configuredStore.dispatch({
+          type: 'GET_ALL_TRANSACTIONS',
+          data: allTransactions,
+        });
+      });
+      ws.emit('getAllTransactions');
+    }
     if (netInfo.isInternetReachable) {
-      getData();
+      setTimeout(getData, 1000);
     } else {
       persistenceConfiguredStore.configuredStore.dispatch({
         type: 'Offline',
       });
     }
   }, [netInfo.isInternetReachable]);
+
   return (
     <Provider store={persistenceConfiguredStore.configuredStore}>
       {/*<PersistGate loading={null} persistor={persistenceConfiguredStore.persistence}/>*/}
       <Navigation colorScheme={'light'} />
     </Provider>
   );
-}
+};
